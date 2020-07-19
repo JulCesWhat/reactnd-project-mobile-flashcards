@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import AppNavigation from './navigation/Navigation';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		// <Tab.Navigator>
+		// 	<Tab.Screen name="Decks" component={DeckListView} />
+		// 	<Tab.Screen name="New Deck" component={NewQuestionView} />
+		// </Tab.Navigator>
+		<View
+		style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height,
+          }}>
+			<AppNavigation />
+		</View>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -33,7 +33,7 @@ export function getDecks() {
             if (res) {
                 return res;
             } else {
-                AsyncStorage.mergeItem(MOBILE_FLASHCARDS, JSON.stringify(startingContent));
+                AsyncStorage.setItem(MOBILE_FLASHCARDS, JSON.stringify(startingContent));
                 return startingContent;
             }
         }).catch((err) => {
