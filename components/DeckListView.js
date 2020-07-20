@@ -69,14 +69,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
         borderRadius: 10,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     deckInfo: {
-        display: "flex",
-        flexDirection: "column",
+        display: 'flex',
+        flexDirection: 'column',
     },
     deckTitle: {
         fontSize: 18,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     deckCards: {
         fontSize: 12,
-        textTransform: "uppercase",
+        textTransform: 'uppercase',
         letterSpacing: 5,
         color: secondary,
     }

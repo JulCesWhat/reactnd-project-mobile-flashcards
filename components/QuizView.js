@@ -1,14 +1,34 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Appbar from './Appbar';
+import { background, surface, textPrimary, textSecondary, secondary } from '../utils/colors';
 
 export default class QuizView extends React.Component {
 
+    goBack = () => {
+        const { id } = this.props.route.params;
+        const { navigation } = this.props;
+        navigation.push('homeview');
+    };
+
     render() {
         return (
-            <View>
+            <View style={styles.main}>
+                <Appbar
+                    title={'Quiz'}
+                    subtitle={`cards`}
+                    onBackPressed={this.goBack} />
                 <Text>Quiz View</Text>
             </View>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    main: {
+        flex: 1,
+        backgroundColor: background,
+        padding: 25,
+    },
+});

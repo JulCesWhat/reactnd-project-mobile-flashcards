@@ -1,14 +1,68 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import Button from './Button';
+import { background, surface, textPrimary, textSecondary, secondary } from '../utils/colors';
 
 export default class NewDeckView extends React.Component {
 
+    state = {
+        title: ''
+    }
+
+    onTitleChanged = (title) => {
+        this.setState({
+            title,
+        });
+    };
+
+    createNewDeck = () => {
+        const { dispatch, navigation } = this.props;
+        const { title } = this.state;
+
+        // dispatch(handleCreateDeck(title));
+
+        setTimeout(() => {
+            navigation.navigate('deckview', { id: title });
+        }, 1000);
+    };
+
     render() {
         return (
-            <View>
-                <Text>New Deck View</Text>
+            <View style={styles.main}>
+                <Text style={styles.title}>New Decks</Text>
+                <TextInput
+                    style={styles.inputField}
+                    onChangeText={(text) => this.onTitleChanged(text)}
+                    placeholder='Deck Title'
+                    value={this.state.title} />
+                <Button
+                    nPress={this.createNewDeck}
+                    title='Submit'
+                    disabled={!this.state.title.length} />
             </View>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    main: {
+        flex: 1,
+        backgroundColor: background,
+        padding: 25,
+        marginTop: 25
+    },
+    title: {
+        fontSize: 24,
+        lineHeight: 36,
+        color: textPrimary,
+        marginBottom: 20,
+    },
+    inputField: {
+        backgroundColor: surface,
+        padding: 15,
+        color: textSecondary,
+        borderRadius: 10,
+        marginBottom: 20
+    }
+});

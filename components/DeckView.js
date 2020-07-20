@@ -14,7 +14,6 @@ export default class DeckView extends React.Component {
         const { id } = this.props.route.params;
         getDeck(id)
             .then((res) => {
-                console.log(res);
                 this.setState({
                     deck: res
                 });
@@ -28,15 +27,15 @@ export default class DeckView extends React.Component {
 
     startQuiz = () => {
         const { navigation, id } = this.props;
-        navigation.navigate("quizview", {
-            id,
+        navigation.navigate('quizview', {
+            id
         });
     };
 
     createCard = () => {
         const { navigation, id } = this.props;
-        navigation.navigate("newquestionview", {
-            id,
+        navigation.navigate('newquestionview', {
+            id
         });
     };
 
@@ -49,13 +48,13 @@ export default class DeckView extends React.Component {
                     subtitle={`${(questions || []).length} cards`}
                     onBackPressed={this.goBack} />
                 <QuickActions
-                    title="Add Question Card"
-                    iconName="plus-circle"
+                    title='Add Question Card'
+                    iconName='plus-circle'
                     color={secondary}
                     onPressed={this.createCard} />
                 <QuickActions
-                    title="Start Quiz"
-                    iconName="feather"
+                    title='Start Quiz'
+                    iconName='feather'
                     color={textPrimary}
                     onPressed={this.startQuiz} />
             </View>
