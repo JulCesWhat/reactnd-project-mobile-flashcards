@@ -31,7 +31,7 @@ export function getDecks() {
     return AsyncStorage.getItem(MOBILE_FLASHCARDS)
         .then((res) => {
             if (res) {
-                return res;
+                return JSON.parse(res);
             } else {
                 AsyncStorage.setItem(MOBILE_FLASHCARDS, JSON.stringify(startingContent));
                 return startingContent;
