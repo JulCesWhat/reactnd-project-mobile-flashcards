@@ -19,8 +19,6 @@ export default class NewDeckView extends React.Component {
     createNewDeck = () => {
         const { navigation } = this.props;
         const { title } = this.state;
-
-        console.log('sahishi')
         saveDeckTitle(title)
             .then((res) => {
                 navigation.navigate('deckview', { id: title });

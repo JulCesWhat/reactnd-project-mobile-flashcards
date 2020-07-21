@@ -36,9 +36,7 @@ export function getDecks() {
                 AsyncStorage.setItem(MOBILE_FLASHCARDS, JSON.stringify(startingContent));
                 return startingContent;
             }
-        }).catch((err) => {
-            console.log('There was an error: ' + err);
-        });
+        })
 }
 
 export function getDeck(id) {

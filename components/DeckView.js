@@ -45,7 +45,8 @@ export default class DeckView extends React.Component {
         const { navigation } = this.props;
         const { id } = this.props.route.params;
         navigation.navigate('quizview', {
-            id
+            id,
+            deck: this.state.deck
         });
     };
 
