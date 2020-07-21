@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Button from './Button';
 import { background, surface, textPrimary, textSecondary, secondary } from '../utils/colors';
+import { saveDeckTitle } from '../utils/api';
 
 export default class NewDeckView extends React.Component {
 
@@ -16,14 +17,14 @@ export default class NewDeckView extends React.Component {
     };
 
     createNewDeck = () => {
-        const { dispatch, navigation } = this.props;
+        const { navigation } = this.props;
         const { title } = this.state;
 
-        // dispatch(handleCreateDeck(title));
-
-        setTimeout(() => {
-            navigation.navigate('deckview', { id: title });
-        }, 1000);
+        console.log('sahishi')
+        saveDeckTitle(title)
+            .then((res) => {
+                navigation.navigate('deckview', { id: title });
+            });
     };
 
     render() {
@@ -36,8 +37,8 @@ export default class NewDeckView extends React.Component {
                     placeholder='Deck Title'
                     value={this.state.title} />
                 <Button
-                    nPress={this.createNewDeck}
-                    title='Submit'
+                    onPress={this.createNewDeck}
+                    title='Create Deck'
                     disabled={!this.state.title.length} />
             </View>
         );

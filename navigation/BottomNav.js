@@ -17,7 +17,7 @@ export default function Navigation() {
                 options={{
                     tabBarLabel: 'Decks',
                     tabBarIcon: ({ color }) => (
-                        <Feather name='Decks' color={color} size={24} />
+                        <Feather name='home' color={color} size={24} />
                     ),
                 }}
                 name='decklistview'

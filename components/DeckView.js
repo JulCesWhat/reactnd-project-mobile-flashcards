@@ -7,17 +7,33 @@ import QuickActions from './QuickActions';
 
 export default class DeckView extends React.Component {
     state = {
-        deck: {}
+        deck: {},
+        id: ''
     }
 
     componentDidMount() {
         const { id } = this.props.route.params;
+
         getDeck(id)
             .then((res) => {
                 this.setState({
-                    deck: res
+                    deck: res,
+                    id
                 });
             });
+    }
+
+    componentDidUpdate() {
+        const { id } = this.props.route.params;
+        if (this.state.id !== id) {
+            getDeck(id)
+                .then((res) => {
+                    this.setState({
+                        deck: res,
+                        id
+                    });
+                });
+        }
     }
 
     goBack = () => {
@@ -26,14 +42,16 @@ export default class DeckView extends React.Component {
     };
 
     startQuiz = () => {
-        const { navigation, id } = this.props;
+        const { navigation } = this.props;
+        const { id } = this.props.route.params;
         navigation.navigate('quizview', {
             id
         });
     };
 
     createCard = () => {
-        const { navigation, id } = this.props;
+        const { navigation } = this.props;
+        const { id } = this.props.route.params;
         navigation.navigate('newquestionview', {
             id
         });

@@ -50,17 +50,36 @@ export function getDeck(id) {
 }
 
 export function saveDeckTitle(title) {
-    let newTile = title.toLowerCase();
-    newTile = newTile.replace(/\s+/g, '')
+    // let newTile = title.toLowerCase();
+    // newTile = newTile.replace(/\s+/g, '')
     return AsyncStorage.mergeItem(MOBILE_FLASHCARDS, JSON.stringify({
-        [newTile]: {}
+        [title]: {
+            title,
+            questions: []
+        }
     }));
 }
 
 export function addCardToDeck(title, card) {
-    let newTile = title.toLowerCase();
-    newTile = newTile.replace(/\s+/g, '')
-    return AsyncStorage.mergeItem(MOBILE_FLASHCARDS, JSON.stringify({
-        [newTile]: card
-    }));
+    // let newTile = title.toLowerCase();
+    // newTile = newTile.replace(/\s+/g, '')
+    return AsyncStorage.getItem(MOBILE_FLASHCARDS)
+        .then((res) => {
+            const data = JSON.parse(res);
+            if (data[title]) {
+                return AsyncStorage.mergeItem(MOBILE_FLASHCARDS, JSON.stringify({
+                    [title]: {
+                        title,
+                        questions: [...data[title].questions, card]
+                    }
+                }));
+            } else {
+                return AsyncStorage.mergeItem(MOBILE_FLASHCARDS, JSON.stringify({
+                    [title]: {
+                        title,
+                        questions: [card]
+                    }
+                }));
+            }
+        });
 }

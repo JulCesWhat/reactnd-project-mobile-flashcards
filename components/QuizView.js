@@ -5,10 +5,16 @@ import { background, surface, textPrimary, textSecondary, secondary } from '../u
 
 export default class QuizView extends React.Component {
 
+    state = {
+        quizIndex: 0
+    }
+
     goBack = () => {
         const { id } = this.props.route.params;
         const { navigation } = this.props;
-        navigation.push('homeview');
+        navigation.push('deckview', {
+            id
+        });
     };
 
     render() {

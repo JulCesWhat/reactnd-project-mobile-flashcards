@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Appbar from './Appbar';
 import { background, surface, textPrimary, textSecondary, secondary } from '../utils/colors';
 import Button from './Button';
+import { addCardToDeck } from '../utils/api';
 
 export default class NewQuestionView extends React.Component {
 
@@ -13,7 +14,10 @@ export default class NewQuestionView extends React.Component {
 
     goBack = () => {
         const { navigation } = this.props;
-        navigation.push('homeview');
+        const { id } = this.props.route.params;
+        navigation.push('deckview', {
+            id
+        });
     };
 
     onQuestionChanged = (question) => {
@@ -29,15 +33,14 @@ export default class NewQuestionView extends React.Component {
     };
 
     createNewQuestion = () => {
-        // this.props.dispatch(
-        //     handleCreateCard({
-        //         id: this.props.id,
-        //         question: this.state.question,
-        //         answer: this.state.answer,
-        //     })
-        // );
+        const { id } = this.props.route.params;
 
-        this.goBack();
+        addCardToDeck(id, {
+            question: this.state.question,
+            answer: this.state.answer
+        }).then((res) => {
+            this.goBack();
+        });
     };
 
     render() {

@@ -19,10 +19,7 @@ export default class DeckListView extends React.Component {
 
     openDeckView = (id) => {
         const { navigation } = this.props;
-
-        navigation.navigate('deckview', {
-            id: id,
-        });
+        navigation.navigate('deckview', { id });
     }
 
     render() {
