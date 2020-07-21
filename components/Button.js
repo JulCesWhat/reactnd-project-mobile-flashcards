@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     primaryCTA: {
         padding: 10,
         backgroundColor: primary,
-        width: 100,
+        width: 150,
         marginTop: 20,
         marginBottom: 10,
         borderRadius: 5,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     disabledCTA: {
         padding: 10,
         backgroundColor: disabledSurface,
-        width: 100,
+        width: 150,
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 5,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     secondaryCTA: {
         padding: 10,
         backgroundColor: 'transparent',
-        width: 100,
+        width: 150,
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 5,

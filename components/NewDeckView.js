@@ -37,7 +37,8 @@ export default class NewDeckView extends React.Component {
                 <Button
                     onPress={this.createNewDeck}
                     title='Create Deck'
-                    disabled={!this.state.title.length} />
+                    disabled={!this.state.title.length}
+                    type='secondary' />
             </View>
         );
     }

@@ -64,7 +64,8 @@ export default class NewQuestionView extends React.Component {
                     title='Submit'
                     disabled={
                         !this.state.question.length || !this.state.answer.length
-                    } />
+                    }
+                    type='secondary' />
             </View>
         );
     }

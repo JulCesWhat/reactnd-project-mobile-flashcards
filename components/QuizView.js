@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Appbar from './Appbar';
 import { background, surface, textPrimary, textSecondary, secondary } from '../utils/colors';
 import Button from './Button';
+import { clearLocalNotification, createLocalNotification } from '../utils/notifications';
 
 export default class QuizView extends React.Component {
 
@@ -11,6 +12,10 @@ export default class QuizView extends React.Component {
         showScore: false,
         score: 0,
         showAnswer: false
+    }
+
+    componentDidMount() {
+        clearLocalNotification().then(createLocalNotification);
     }
 
     goBack = () => {
@@ -68,40 +73,44 @@ export default class QuizView extends React.Component {
                     onBackPressed={this.goBack} />
                 {
                     deck.questions.length ? (
-                        <View>
+                        <View style={styles.row}>
                             {
                                 showScore ? (
-                                    <View>
-                                        <Text>Your total score is {score} out of {deck.questions.length}</Text>
+                                    <View style={styles.row}>
+                                        <Text style={styles.title}>Your total score is {score} out of {deck.questions.length}</Text>
                                         <Button
                                             onPress={() => this.restartQuiz()}
-                                            title='Restart Quiz' />
+                                            title='Restart Quiz'
+                                            type='secondary' />
                                         <Button
                                             onPress={() => this.goBack()}
                                             title='Back to decks'
                                             type='secondary' />
                                     </View>
                                 ) : (
-                                        <View>
+                                        <View style={styles.row}>
                                             {
                                                 showAnswer ? (
                                                     (
                                                         <>
-                                                            <Text>{deck.questions[quizIndex].answer}</Text>
+                                                            <Text style={styles.title}>{deck.questions[quizIndex].answer}</Text>
                                                             <Button
                                                                 onPress={() => this.submitAnswer(true, quizIndex)}
-                                                                title='Correct' />
+                                                                title='Correct'
+                                                                type='secondary' />
                                                             <Button
                                                                 onPress={() => this.submitAnswer(false, quizIndex)}
-                                                                title='Incorrect' />
+                                                                title='Incorrect'
+                                                                type='secondary' />
                                                         </>
                                                     )
                                                 ) : (
                                                         <>
-                                                            <Text>{deck.questions[quizIndex].question}</Text>
+                                                            <Text style={styles.title}>{deck.questions[quizIndex].question}</Text>
                                                             <Button
                                                                 onPress={() => this.showAnswer()}
-                                                                title='Show Answer' />
+                                                                title='Show Answer'
+                                                                type='secondary' />
                                                         </>
                                                     )
                                             }
@@ -125,5 +134,14 @@ const styles = StyleSheet.create({
         backgroundColor: background,
         padding: 25,
         marginTop: 25
+    },
+    row: {
+        flex: 1
+    },
+    title: {
+        fontSize: 24,
+        lineHeight: 36,
+        color: textPrimary,
+        marginBottom: 20,
     },
 });
